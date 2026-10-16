@@ -1,0 +1,57 @@
+<form class="formulario" [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+  <div class="campo">
+    <label for="nombre">Nombre completo</label>
+    <input id="nombre" formControlName="nombre" autocomplete="name" />
+    @if (form.controls.nombre.touched && form.controls.nombre.invalid) {
+      <small class="campo__error">Escriba al menos 3 caracteres.</small>
+    }
+  </div>
+  <div class="campo">
+    <label for="correo">Correo institucional</label>
+    <input
+      id="correo"
+      type="email"
+      formControlName="correo"
+      autocomplete="email"
+    />
+    @if (form.controls.correo.touched && form.controls.correo.invalid) {
+      <small class="campo__error">
+        Use un correo que termine en &#64;correo.buap.mx
+      </small>
+    }
+  </div>
+  <div class="campo">
+    <label for="area">Área</label>
+    <input id="area" formControlName="area" />
+    @if (form.controls.area.touched && form.controls.area.invalid) {
+      <small class="campo__error">Indique el área.</small>
+    }
+  </div>
+  <button
+    type="submit"
+    [class]="'boton boton--' + estado()"
+    [disabled]="estado() === 'guardando'"
+  >
+    @switch (estado()) {
+      @case ('guardando') {
+        Guardando…
+      }
+      @case ('exito') {
+        ✓ Guardado
+      }
+      @case ('error') {
+        Reintentar
+      }
+      @default {
+        Agregar docente
+      }
+    }
+  </button>
+  <span class="sr-only" aria-live="polite">
+    @if (estado() === 'exito') {
+      Docente agregado
+    } @else if (estado() === 'error') {
+      No se pudo guardar
+    }
+  </span>
+</form>

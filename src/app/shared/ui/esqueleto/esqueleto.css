@@ -1,0 +1,23 @@
+.esqueleto {
+  padding: 1.25rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+.esqueleto__linea {
+  height: 0.9rem;
+  margin-top: 0.7rem;
+  border-radius: 0.4rem;
+  background: linear-gradient(90deg, #e6eef3 25%, #f5fafc 50%, #e6eef3 75%);
+  background-size: 200% 100%;
+  animation: brillo 1.4s ease-in-out infinite;
+}
+.esqueleto__linea--titulo { height: 1.2rem; width: 70%; margin-top: 0; }
+.esqueleto__linea--corta { width: 50%; }
+@keyframes brillo {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .esqueleto__linea { animation: none; }
+}

@@ -1,0 +1,22 @@
+/* Tokens de diseño: paleta institucional BUAP */
+:root {
+  --color-primario: #00395e;
+  --color-acento: #00c5f4;
+  --color-enlace: #0077a8;
+  --texto: #1c1c1c;
+  --texto-secundario: #5c6b73;
+  --fondo: #f5fafc;
+  --superficie: #ffffff;
+  --borde: #d7e8f0;
+  --borde-fuerte: #9fb7c6;
+  --radio: 0.6rem;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, 'Segoe UI', Roboto, sans-serif; color: var(--texto); background: var(--fondo); }
+.contenedor { width: min(100% - 2rem, 1100px); margin-inline: auto; padding-block: 1.5rem; }
+.encabezado { background: var(--color-primario); color: #fff; }
+.encabezado .contenedor { display: flex; gap: 1rem; flex-wrap: wrap; align-items: baseline; padding-block: 1rem; }
+.encabezado strong { color: var(--color-acento); letter-spacing: 0.05em; }
+.galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+:focus-visible { outline: 3px solid var(--color-acento); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

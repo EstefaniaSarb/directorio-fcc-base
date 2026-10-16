@@ -1,0 +1,32 @@
+<section class="pagina">
+  <h1>Directorio FCC</h1>
+
+  <!-- TODO 3.3: enlazar [estado] y (guardar) del formulario con el store -->
+  <app-formulario-docente />
+
+  <div class="busqueda">
+    <label for="buscar">Buscar por nombre o área</label>
+    <input
+      id="buscar"
+      type="search"
+      [value]="termino()"
+      (input)="buscar($any($event.target).value)"
+    />
+    <p role="status">
+      {{ store.filtrados().length }} resultado(s) ·
+      {{ prefs.favoritos().length }} favorito(s)
+    </p>
+  </div>
+
+  <!--
+    TODO 3.4: sustituir la sección siguiente por el control de flujo:
+      @if (cargando) → esqueleto
+      @else if (error) → alerta con botón Reintentar
+      @else → galería con @for, entradas, salidas y @empty
+  -->
+  <section class="galeria" aria-label="Docentes">
+    @for (d of store.filtrados(); track d.id) {
+      <app-tarjeta-docente [docente]="d" />
+    }
+  </section>
+</section>

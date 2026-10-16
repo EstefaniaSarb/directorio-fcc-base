@@ -1,0 +1,25 @@
+<article class="tarjeta">
+  <header class="tarjeta__encabezado">
+    <h2 class="tarjeta__nombre">{{ docente().nombre }}</h2>
+    <button
+      type="button"
+      class="tarjeta__favorito"
+      [class.tarjeta__favorito--activo]="favorito()"
+      [attr.aria-pressed]="favorito()"
+      [attr.aria-label]="
+        (favorito() ? 'Quitar de favoritos a ' : 'Marcar como favorito a ') +
+        docente().nombre
+      "
+      (click)="alternarFavorito.emit()"
+    >
+      {{ favorito() ? '★' : '☆' }}
+    </button>
+  </header>
+  <p class="tarjeta__area">{{ docente().area }}</p>
+  <a class="tarjeta__correo" [href]="'mailto:' + docente().correo">
+    {{ docente().correo }}
+  </a>
+  <button type="button" class="tarjeta__eliminar" (click)="eliminar.emit()">
+    Eliminar
+  </button>
+</article>

@@ -1,0 +1,23 @@
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: end;
+  padding: 1.25rem;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+}
+.campo { display: grid; gap: 0.3rem; }
+.campo label { font-weight: 600; color: var(--color-primario); }
+.campo input { padding: 0.55rem 0.7rem; border: 1px solid var(--borde-fuerte); border-radius: 0.4rem; font: inherit; }
+.campo__error { color: #b3261e; }
+.boton {
+  padding: 0.65rem 1rem; border: 0; border-radius: 0.4rem; font: inherit; font-weight: 600;
+  color: #fff; background: var(--color-primario); cursor: pointer;
+  transition: background-color 200ms ease-out, transform 100ms ease-out;
+}
+.boton:active { transform: scale(0.97); }
+.boton--guardando { background: #5c6b73; cursor: progress; }
+.boton--exito { background: #1e6b3c; }
+.boton--error { background: #b3261e; }

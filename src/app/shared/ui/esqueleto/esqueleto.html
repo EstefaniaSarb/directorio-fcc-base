@@ -1,0 +1,10 @@
+<div class="galeria" aria-busy="true">
+  <span class="sr-only" role="status">Cargando directorio…</span>
+  @for (i of items(); track i) {
+    <div class="esqueleto" aria-hidden="true">
+      <div class="esqueleto__linea esqueleto__linea--titulo"></div>
+      <div class="esqueleto__linea"></div>
+      <div class="esqueleto__linea esqueleto__linea--corta"></div>
+    </div>
+  }
+</div>
