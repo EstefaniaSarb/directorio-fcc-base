@@ -25,20 +25,34 @@ export class DocentesStore {
 
   // Acciones
   cargar(): void {
-    // TODO 2b.1: activar cargando, limpiar error y llamar a this.api.listar()
-    //   - .pipe(finalize(...)) apaga cargando en éxito o en error
-    //   - next: this.docentes.set(lista)
-    //   - error: this.error.set(SIN_CONEXION)
+    this.cargando.set(true); 
+    this.error.set(null); 
+    this.api 
+      .listar() 
+      .pipe(finalize(() => this.cargando.set(false))) 
+      .subscribe({ 
+        next: (lista) => this.docentes.set(lista), 
+        error: () => this.error.set(SIN_CONEXION), 
+      });
   }
 
   agregar(docente: NuevoDocente): void {
-    // TODO 2b.2: guardado = 'guardando' y llamar a this.api.crear(docente)
-    //   - next: agregar con this.docentes.update(...) sin mutar el arreglo,
-    //           guardado = 'exito' y regresar a 'reposo' después de 2 s
-    //   - error: guardado = 'error'
+    this.guardado.set('guardando'); 
+    this.api.crear(docente).subscribe({ 
+      next: (nuevo) => { 
+        this.docentes.update((lista) => [...lista, nuevo]); 
+        this.guardado.set('exito'); 
+        setTimeout(() => this.guardado.set('reposo'), 2000); 
+      }, 
+      error: () => this.guardado.set('error'), 
+    }); 
   }
 
   eliminar(id: string): void {
-    // TODO 2b.3: llamar a this.api.eliminar(id) y quitarlo con update(...)
+    this.api.eliminar(id).subscribe({ 
+    next: () => 
+      this.docentes.update((lista) => lista.filter((d) => d.id !== id)), 
+    error: () => this.error.set('No fue posible eliminar el registro.'), 
+  }); 
   }
 }

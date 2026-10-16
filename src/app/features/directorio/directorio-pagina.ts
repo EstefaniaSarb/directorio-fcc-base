@@ -17,9 +17,11 @@ export class DirectorioPagina {
   protected readonly prefs = inject(PreferenciasStore);
   protected readonly termino = signal('');
 
-  constructor() {
-    // TODO 3.2: disparar la carga inicial con this.store.cargar()
-  }
+
+  constructor() { 
+    this.store.cargar(); // carga inicial 
+} 
+
 
   /** Reto opcional: búsqueda con debounce de 300 ms. */
   buscar(valor: string): void {
