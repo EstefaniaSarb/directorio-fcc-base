@@ -21,8 +21,18 @@ export class DocentesStore {
   readonly filtro = signal('');
 
   // Estado derivado (reto opcional: búsqueda)
-  readonly filtrados = computed(() => this.docentes());
+  readonly filtrados = computed(() => { 
+  // Función auxiliar interna para limpiar acentos y minúsculas
+  const normalizar = (str: string) => 
+    str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
+  const f = normalizar(this.filtro().trim()); 
+
+  return this.docentes().filter((d) => {
+    const textoDocente = normalizar(`${d.nombre} ${d.area}`);
+    return textoDocente.includes(f);
+  }); 
+});
   // Acciones
   cargar(): void {
     this.cargando.set(true); 
@@ -55,4 +65,6 @@ export class DocentesStore {
     error: () => this.error.set('No fue posible eliminar el registro.'), 
   }); 
   }
+
+  
 }

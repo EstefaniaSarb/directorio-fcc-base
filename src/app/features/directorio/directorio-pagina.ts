@@ -16,6 +16,7 @@ export class DirectorioPagina {
   protected readonly store = inject(DocentesStore);
   protected readonly prefs = inject(PreferenciasStore);
   protected readonly termino = signal('');
+  private temporizador?: ReturnType<typeof setTimeout>; 
 
 
   constructor() { 
@@ -26,5 +27,7 @@ export class DirectorioPagina {
   /** Reto opcional: búsqueda con debounce de 300 ms. */
   buscar(valor: string): void {
     this.termino.set(valor);
+    clearTimeout(this.temporizador); 
+    this.temporizador = setTimeout(() => this.store.filtro.set(valor), 300);
   }
 }
