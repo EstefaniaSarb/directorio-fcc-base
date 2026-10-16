@@ -1,8 +1,35 @@
 {
   "docentes": [
-    { "id": "1", "nombre": "Ana López", "correo": "ana.lopez@correo.buap.mx", "area": "Inteligencia Artificial" },
-    { "id": "2", "nombre": "Luis Pérez", "correo": "luis.perez@correo.buap.mx", "area": "Ingeniería de Software" },
-    { "id": "3", "nombre": "María Torres", "correo": "maria.torres@correo.buap.mx", "area": "Ciencia de Datos" },
-    { "id": "4", "nombre": "Jorge Ramírez", "correo": "jorge.ramirez@correo.buap.mx", "area": "Redes y Seguridad" }
-  ]
+    {
+      "id": "1",
+      "nombre": "Ana López",
+      "correo": "ana.lopez@correo.buap.mx",
+      "area": "Inteligencia Artificial"
+    },
+    {
+      "id": "2",
+      "nombre": "Luis Pérez",
+      "correo": "luis.perez@correo.buap.mx",
+      "area": "Ingeniería de Software"
+    },
+    {
+      "id": "3",
+      "nombre": "María Torres",
+      "correo": "maria.torres@correo.buap.mx",
+      "area": "Ciencia de Datos"
+    },
+    {
+      "id": "4",
+      "nombre": "Jorge Ramírez",
+      "correo": "jorge.ramirez@correo.buap.mx",
+      "area": "Redes y Seguridad"
+    },
+    {
+      "nombre": "Ana Paula Sarmiento Barrios",
+      "correo": "ana.sarmiento@correo.buap.mx",
+      "area": "Diseño",
+      "id": "4zIVkdwRvT4"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

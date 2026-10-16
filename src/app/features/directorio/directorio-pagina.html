@@ -2,7 +2,10 @@
   <h1>Directorio FCC</h1>
 
   <!-- TODO 3.3: enlazar [estado] y (guardar) del formulario con el store -->
-  <app-formulario-docente />
+  <app-formulario-docente 
+    [estado]="store.guardado()" 
+    (guardar)="store.agregar($event)"
+  />
 
   <div class="busqueda">
     <label for="buscar">Buscar por nombre o área</label>
@@ -18,15 +21,28 @@
     </p>
   </div>
 
-  <!--
-    TODO 3.4: sustituir la sección siguiente por el control de flujo:
-      @if (cargando) → esqueleto
-      @else if (error) → alerta con botón Reintentar
-      @else → galería con @for, entradas, salidas y @empty
-  -->
-  <section class="galeria" aria-label="Docentes">
-    @for (d of store.filtrados(); track d.id) {
-      <app-tarjeta-docente [docente]="d" />
-    }
-  </section>
+  <!--TODO 3.4: sustituir la sección siguiente por el control de flujo: -->
+  @if (store.cargando()) { 
+    <app-esqueleto [cantidad]="4" /> 
+  } @else if (store.error(); as mensaje) { 
+    <div role="alert" class="alerta"> 
+      <span>{{ mensaje }}</span> 
+      <button type="button" (click)="store.cargar()">Reintentar</button> 
+    </div> 
+  } @else { 
+    <section class="galeria" aria-label="Docentes"> 
+      @for (d of store.filtrados(); track d.id) { 
+        <app-tarjeta-docente 
+          [docente]="d" 
+          [favorito]="prefs.esFavorito(d.id)" 
+          (alternarFavorito)="prefs.alternar(d.id)" 
+          (eliminar)="store.eliminar(d.id)" 
+        /> 
+      } @empty { 
+        <p role="status" class="vacio"> 
+          Aún no hay docentes registrados o no hay coincidencias. 
+        </p> 
+      } 
+    </section>
+  } 
 </section>
