@@ -11,17 +11,20 @@ export class DocentesService {
   private readonly url = `${environment.apiUrl}/docentes`;
 
   listar(): Observable<Docente[]> {
-    // TODO 2a.1: devolver this.http.get<Docente[]>(this.url)
-    return of([]);
+    // TODO 2a.1: 
+    return this.http.get<Docente[]>(this.url)
+    //return of([]);
   }
 
   crear(docente: NuevoDocente): Observable<Docente> {
-    // TODO 2a.2: devolver this.http.post<Docente>(this.url, docente)
+    // TODO 2a.2: 
+    return this.http.post<Docente>(this.url, docente)
     return of({ id: '0', ...docente });
   }
 
   eliminar(id: string): Observable<void> {
-    // TODO 2a.3: devolver this.http.delete<void>(`${this.url}/${id}`)
-    return of(undefined);
+    // TODO 2a.3: 
+    return this.http.delete<void>(`${this.url}/${id}`)
+    //return of(undefined);
   }
 }
